@@ -1,0 +1,22 @@
+name: Test
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      test:
+        type: boolean
+        description: Test
+        default: false
+
+jobs:
+  test:
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.run_id }}
+  test2:
+    if: ${{ ! inputs.test }}
+    environment: staging-non-existing
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.run_id }}
