@@ -14,3 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: gh auth status
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - run: echo HELLO
