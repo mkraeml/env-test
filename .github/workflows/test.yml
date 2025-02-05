@@ -7,16 +7,17 @@ on:
         type: boolean
         description: Test
         default: false
+      test2:
+        type: boolean
+        description: Test 2
+        default: true
 
 jobs:
   test:
-    environment: staging
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.run_id }}
+      - run: echo ${{ vars.TEST_VAR }}
   test2:
-    if: ${{ ! inputs.test }}
-    environment: staging-non-existing
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.run_id }}
+      - run: echo ${{ inputs.test && inputs.test2 }}
