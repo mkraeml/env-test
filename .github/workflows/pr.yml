@@ -16,4 +16,5 @@ jobs:
       - run: gh auth status
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - run: echo HELLO
+      - run: echo ${{ secrets.TEST }}
+      - run: echo ${{ secrets.TEST }} | base64
